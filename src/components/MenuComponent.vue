@@ -1,22 +1,18 @@
 <template>
-  <n-split :default-size="0.8">
-    <template #1>
-      <n-menu
-        v-model:value="activeKey"
-        mode="horizontal"
-        :options="menuOptions"
-        responsive
-        @update:value="handleMenuSelect"
-      />
-    </template>
-  </n-split>
+  <n-menu
+      v-model:value="activeKey"
+      mode="horizontal"
+      :options="menuOptions"
+      responsive
+      @update:value="handleMenuSelect"
+  />
 </template>
 
 <script setup lang="ts">
-import type { MenuOption } from "naive-ui";
-import { computed } from "vue";
-import { useRouter, useRoute } from "vue-router";
-import type { RouteRecordRaw } from "vue-router";
+import type {MenuOption} from "naive-ui";
+import {computed} from "vue";
+import {useRouter, useRoute} from "vue-router";
+import type {RouteRecordRaw} from "vue-router";
 
 const router = useRouter();
 const route = useRoute();
@@ -33,19 +29,19 @@ type CustomMenuOption = Omit<MenuOption, "key" | "label"> & {
 // 根据路由配置生成菜单选项
 const menuOptions = computed<CustomMenuOption[]>(() => {
   return router.options.routes
-    .filter(
-      (routeItem: RouteRecordRaw) =>
-        routeItem.name &&
-        routeItem.meta?.title &&
-        !["login"].includes(String(routeItem.name)),
-    )
-    .map((routeItem: RouteRecordRaw) => ({
-      key: String(routeItem.name),
-      label: routeItem.meta?.title as string,
-      props: {
-        routePath: routeItem.path,
-      },
-    }));
+      .filter(
+          (routeItem: RouteRecordRaw) =>
+              routeItem.name &&
+              routeItem.meta?.title &&
+              !["login"].includes(String(routeItem.name)),
+      )
+      .map((routeItem: RouteRecordRaw) => ({
+        key: String(routeItem.name),
+        label: routeItem.meta?.title as string,
+        props: {
+          routePath: routeItem.path,
+        },
+      }));
 });
 
 // 根据当前路由设置激活的菜单项
@@ -61,7 +57,7 @@ const activeKey = computed({
 // 处理菜单项选择事件
 const handleMenuSelect = (key: string, _item: any) => {
   const matchedRoute = router.options.routes.find(
-    (r: RouteRecordRaw) => String(r.name) === key,
+      (r: RouteRecordRaw) => String(r.name) === key,
   );
   if (matchedRoute) {
     router.push(matchedRoute.path);

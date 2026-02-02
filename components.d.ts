@@ -11,8 +11,12 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    CardComponent: typeof import('./src/components/CardComponent.vue')['default']
+    FooterComponent: typeof import('./src/components/FooterComponent.vue')['default']
+    FotterComponent: typeof import('./src/components/FotterComponent.vue')['default']
     LayoutComponent: typeof import('./src/components/LayoutComponent.vue')['default']
     MenuComponent: typeof import('./src/components/MenuComponent.vue')['default']
+    NCard: typeof import('naive-ui')['NCard']
     NLayout: typeof import('naive-ui')['NLayout']
     NLayoutContent: typeof import('naive-ui')['NLayoutContent']
     NLayoutFooter: typeof import('naive-ui')['NLayoutFooter']
