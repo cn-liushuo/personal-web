@@ -11,12 +11,43 @@
 
         <section class="about-section">
           <LsSectionTitle compact>教育经历</LsSectionTitle>
-          <p class="about-section__placeholder">
-            学校、专业、学历与就读时间等，后续在此补充。
-          </p>
+          <n-space vertical :size="8">
+            <p class="about-section__placeholder about-inline-item">
+              <strong class="about-item-label">
+                <span class="about-item-label-text">学校</span>
+                <span class="about-item-colon">：</span>
+              </strong>
+              <span class="about-item-value">东营科技职业学院</span>
+            </p>
+            <p class="about-section__placeholder about-inline-item">
+              <strong class="about-item-label">
+                <span class="about-item-label-text">专业</span>
+                <span class="about-item-colon">：</span>
+              </strong>
+              <span class="about-item-value">现代移动通信技术</span>
+            </p>
+            <p class="about-section__placeholder about-inline-item">
+              <strong class="about-item-label">
+                <span class="about-item-label-text">时间</span>
+                <span class="about-item-colon">：</span>
+              </strong>
+              <span class="about-item-value">2021年9月 - 2024年6月</span>
+            </p>
+            <div class="about-multiline">
+              <p class="about-section__placeholder about-multiline__label">
+                <strong class="about-item-label">
+                  <span class="about-item-label-text">在校经历</span>
+                  <span class="about-item-colon">：</span>
+                </strong>
+              </p>
+              <div class="about-multiline__content">
+                <p class="about-section__placeholder">东营科技职业学院秘书部干事；</p>
+                <p class="about-section__placeholder">信息工程学院秘书部部长；</p>
+                <p class="about-section__placeholder">信息工程学院纪检部秘书；</p>
+              </div>
+            </div>
+          </n-space>
         </section>
-
-        <n-divider dashed />
 
         <section class="about-section">
           <LsSectionTitle compact>培训经历</LsSectionTitle>
@@ -119,6 +150,26 @@
   display: grid;
   grid-template-columns: 6em 1fr;
   align-items: baseline;
+}
+
+.about-multiline {
+  display: grid;
+  grid-template-columns: 6em 1fr;
+  align-items: start;
+  gap: 0;
+}
+
+.about-multiline__label {
+  margin: 0;
+}
+
+.about-multiline__content {
+  p {
+    margin: 0 0 4px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .about-item-value {
