@@ -22,6 +22,30 @@ const routes = [
     },
   },
   {
+    path: "/tech",
+    name: "tech",
+    component: () => import("@/views/TechStackView.vue"),
+    meta: {
+      title: "技术",
+    },
+  },
+  {
+    path: "/work",
+    name: "work",
+    component: () => import("@/views/WorkView.vue"),
+    meta: {
+      title: "工作",
+    },
+  },
+  {
+    path: "/projects",
+    name: "projects",
+    component: () => import("@/views/ProjectsView.vue"),
+    meta: {
+      title: "项目",
+    },
+  },
+  {
     path: "/about",
     name: "about",
     component: () => import("@/views/AboutView.vue"),

@@ -1,7 +1,10 @@
 <template>
-    <div>
-        login
+  <LsCardBody>
+    <div class="login-page">
+      <LsPageTitle>登录</LsPageTitle>
+      login
     </div>
+  </LsCardBody>
 </template>
 
 <script setup lang="ts"></script>

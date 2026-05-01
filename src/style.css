@@ -1,4 +1,10 @@
 :root {
+  /* 站点主题色 Theme Color — rgb(32, 128, 240) */
+  --ls-theme-rgb: 32, 128, 240;
+  --ls-theme: rgb(var(--ls-theme-rgb));
+  --ls-theme-hover: rgb(52, 148, 252);
+  --ls-theme-active: rgb(22, 108, 216);
+
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   /* line-height: 1.5; */
   font-weight: 400;
@@ -15,19 +21,30 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--ls-theme);
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--ls-theme-hover);
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
 }
 
 body {
-  margin: 0;
-  /* display: flex;
-  place-items: center;
-  min-width: 320px; */
   min-height: 100vh;
+}
+
+#app {
+  height: 100%;
+  min-height: 100vh;
+  /* max-width: 1280px; */
+  /* margin: 0 auto; */
+  /* padding: 2rem; */
+  /* text-align: center; */
 }
 
 h1 {
@@ -47,7 +64,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--ls-theme);
 }
 button:focus,
 button:focus-visible {
@@ -58,20 +75,13 @@ button:focus-visible {
   padding: 2em;
 }
 
-#app {
-  /* max-width: 1280px; */
-  /* margin: 0 auto; */
-  /* padding: 2rem; */
-  /* text-align: center; */
-}
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: var(--ls-theme-hover);
   }
   button {
     background-color: #f9f9f9;
