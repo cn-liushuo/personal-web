@@ -5,7 +5,7 @@
 
       <n-space vertical :size="24">
         <p class="intro">
-          我是刘铄，一名偏 Frontend(前端) 的软件开发工程师。
+          我是刘铄，一名偏 Frontend(前端)和Agent(智能体) 的软件开发工程师。
           以下为住址、家庭背景及教育、培训与资格等信息展示位，条目将随时间补充更新。
         </p>
 

@@ -3,7 +3,7 @@
     <div class="home-content">
       <h1>刘铄</h1>
       <p class="intro">
-        我是一名软件开发工程师，当前方向聚焦于 Frontend(前端) 开发，
+        我是一名软件开发工程师，当前方向聚焦于 Frontend(前端)和Agent(智能体)，
         关注用户体验、工程化效率与页面性能优化。
       </p>
     </div>
