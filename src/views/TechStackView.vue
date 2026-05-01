@@ -6,7 +6,7 @@
     <div class="tech-columns">
       <!-- Frontend(前端) -->
       <section class="tech-category">
-        <h2>Frontend(前端)</h2>
+        <LsSectionTitle tag="h2">Frontend(前端)</LsSectionTitle>
         <n-space vertical :size="12">
           <div class="skill-item">
             <div class="skill-info">
@@ -41,7 +41,7 @@
 
       <!-- Backend(后端) -->
       <section class="tech-category">
-        <h2>Backend(后端)</h2>
+        <LsSectionTitle tag="h2">Backend(后端)</LsSectionTitle>
         <n-space vertical :size="12">
           <div class="skill-item">
             <div class="skill-info">
@@ -62,7 +62,7 @@
 
       <!-- Testing(测试) -->
       <section class="tech-category">
-        <h2>Testing(测试)</h2>
+        <LsSectionTitle tag="h2">Testing(测试)</LsSectionTitle>
         <n-space vertical :size="12">
           <div class="skill-item">
             <div class="skill-info">
@@ -83,7 +83,7 @@
 
       <!-- DevOps(运维) -->
       <section class="tech-category">
-        <h2>DevOps(运维)</h2>
+        <LsSectionTitle tag="h2">DevOps(运维)</LsSectionTitle>
         <n-space vertical :size="12">
           <div class="skill-item">
             <div class="skill-info">
@@ -111,7 +111,7 @@
 
       <!-- Agent(智能体) -->
       <section class="tech-category">
-        <h2>Agent(智能体)</h2>
+        <LsSectionTitle tag="h2">Agent(智能体)</LsSectionTitle>
         <n-space vertical :size="12">
           <div class="skill-item">
             <div class="skill-info">
@@ -179,14 +179,6 @@
   .tech-columns {
     grid-template-columns: 1fr;
   }
-}
-
-.tech-category h2 {
-  margin: 0 0 16px;
-  font-size: 18px;
-  color: #000000;
-  padding-bottom: 8px;
-  border-bottom: 1px solid rgba(var(--ls-theme-rgb), 0.35);
 }
 
 .skill-item {
