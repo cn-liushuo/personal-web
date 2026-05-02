@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { GlobalThemeOverrides } from "naive-ui";
-import LayoutComponent from "./components/LayoutComponent.vue";
+import lsLayout from "./components/lsLayout.vue";
 
 const themeRgb = "32, 128, 240";
 
@@ -16,7 +16,7 @@ const themeOverrides: GlobalThemeOverrides = {
 
 <template>
   <n-config-provider :theme-overrides="themeOverrides">
-    <LayoutComponent />
+    <lsLayout />
   </n-config-provider>
 </template>
 

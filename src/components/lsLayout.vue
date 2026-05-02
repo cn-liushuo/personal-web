@@ -2,8 +2,7 @@
   <n-layout position="absolute" class="root-layout">
     <n-layout-header ref="headerRef" class="main-header"
     >
-      <MenuComponent
-      />
+      <lsMenu />
     </n-layout-header>
     <n-layout-content
         class="main-content"
@@ -11,9 +10,9 @@
     >
       <!-- flex 子项需 min-height: 0，否则 height:100% 与内部居中无法生效 -->
       <div class="main-content-inner">
-        <CardComponent>
+        <lsCard>
           <router-view/>
-        </CardComponent>
+        </lsCard>
       </div>
     </n-layout-content>
     <n-layout-footer ref="footerRef" class="main-footer">
@@ -26,8 +25,8 @@
 <script setup lang="ts">
 import {RouterView} from "vue-router";
 import {ref, onMounted, onUnmounted, nextTick} from "vue";
-import MenuComponent from "./MenuComponent.vue";
-import CardComponent from "./CardComponent.vue"
+import lsMenu from "./lsMenu.vue";
+import lsCard from "./lsCard.vue";
 
 const headerRef = ref();
 const footerRef = ref();

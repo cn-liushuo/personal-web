@@ -9,7 +9,7 @@ alwaysApply: true
 
 ## 必须遵守
 
-- 读写、搜索、在工具中传入路径时，一律使用**小写 `ls`** 开头的真实文件名，例如：`src/components/lsTable.vue`、`src/components/lsCardBody.vue`。
+- 读写、搜索、在工具中传入路径时，一律使用**小写 `ls`** 开头的真实文件名，例如：`src/components/lsLayout.vue`、`src/components/lsTable.vue`。
 - import 使用 `@/components/lsXxx.vue`（`ls` 小写），与 `git ls-files src/components` 中列出的名称一致。
 
 ## 禁止
@@ -19,7 +19,10 @@ alwaysApply: true
 
 ## 当前 ls 系列组件（引用时请复制正确拼写）
 
+- `lsCard.vue`
 - `lsCardBody.vue`
+- `lsLayout.vue`
+- `lsMenu.vue`
 - `lsPageTitle.vue`
 - `lsSectionTitle.vue`
 - `lsSkillItem.vue`
