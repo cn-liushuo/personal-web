@@ -42,7 +42,7 @@ const props = withDefaults(defineProps<Props>(), {
   size: 'small'
 })
 
-/** 数据行超过 3 行时启用条纹（依赖 n-table 的 striped，tbody 内偶数行着色） */
+/** 数据行超过 3 行（至少 4 行）时启用条纹；依赖 n-table 的 striped，tbody 内偶数行着色 */
 const showStripes = computed(() => (props.data?.length ?? 0) >= 3)
 </script>
 

@@ -1,0 +1,26 @@
+---
+description: 公共组件（ls 系列）路径大小写与引用约定，避免误用 Ls 前缀
+alwaysApply: true
+---
+
+# ls 公共组件路径（大小写敏感）
+
+本仓库中作者前缀为**小写 `ls`** 的 Vue 组件位于 `src/components/`，文件名与 import 路径必须与磁盘/Git **完全一致**。
+
+## 必须遵守
+
+- 读写、搜索、在工具中传入路径时，一律使用**小写 `ls`** 开头的真实文件名，例如：`src/components/lsTable.vue`、`src/components/lsCardBody.vue`。
+- import 使用 `@/components/lsXxx.vue`（`ls` 小写），与 `git ls-files src/components` 中列出的名称一致。
+
+## 禁止
+
+- 不要使用 `LsTable.vue`、`@/components/LsTable.vue` 或任何 **`Ls` 大写 L** 的路径，即使在 Windows 上能打开同一文件，在 Agent 工具调用与 Linux CI 中也会造成错误与混淆。
+- **不要**以聊天里附带的上下文路径、Tab 标题或历史记录中的大小写为准；若与下列列表不一致，以仓库内 `src/components/` 实际文件名为准。
+
+## 当前 ls 系列组件（引用时请复制正确拼写）
+
+- `lsCardBody.vue`
+- `lsPageTitle.vue`
+- `lsSectionTitle.vue`
+- `lsSkillItem.vue`
+- `lsTable.vue`
