@@ -21,7 +21,32 @@
     ]
   },
   "certificates": {
-    "data": []
+    "data": [
+      {
+        "name": "机动车驾驶证",
+        "level": "C1",
+        "subject": "—",
+        "grade": "—",
+        "issuer": "内蒙古自治区赤峰市公安局交通警察支队",
+        "date": "2022年09月26日"
+      },
+      {
+        "name": "普通话水平测试等级证书",
+        "level": "二级乙等",
+        "subject": "—",
+        "grade": "86.2",
+        "issuer": "国家语言文字工作委员会",
+        "date": "2022年05月28日"
+      },
+      {
+        "name": "全国计算机等级考试",
+        "level": "一级",
+        "subject": "一级计算机基础及WPS Office应用",
+        "grade": "良好",
+        "issuer": "教育部教育考试院",
+        "date": "2025年09月"
+      }
+    ]
   },
   "familyBackground": {
     "data": [

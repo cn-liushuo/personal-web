@@ -72,8 +72,11 @@
                 :title="item.name"
                 class="info-card"
               >
-                <p class="card-item"><span class="card-label">颁发机构：</span>{{ item.issuer }}</p>
+                <p class="card-item"><span class="card-label">级别：</span>{{ item.level }}</p>
+                <p class="card-item"><span class="card-label">考试科目：</span>{{ item.subject }}</p>
+                <p class="card-item"><span class="card-label">等第 / 成绩：</span>{{ item.grade }}</p>
                 <p class="card-item"><span class="card-label">获得时间：</span>{{ item.date }}</p>
+                <p class="card-item"><span class="card-label">颁发机构：</span>{{ item.issuer }}</p>
               </n-card>
             </div>
           </template>
@@ -125,7 +128,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import { computed, reactive } from "vue";
 import lsCardBody from "@/components/lsCardBody.vue";
 import lsPageTitle from "@/components/lsPageTitle.vue";
 import lsSectionTitle from "@/components/lsSectionTitle.vue";
@@ -135,8 +138,32 @@ import aboutData from "@/data/aboutData.json";
 // 类型定义
 interface Certificate {
   name: string;
+  level: string;
+  /** 考试科目（如 NCRE 科目；无则填「—」） */
+  subject: string;
+  /** 等第（如良好）或分数成绩（如 86.2）；无则填「—」 */
+  grade: string;
   issuer: string;
   date: string;
+}
+
+/** 解析「YYYY年M月…」式日期为时间戳；无效或「—」返回 0（倒序时排在末尾） */
+function parseChineseDateForSort(dateStr: string): number {
+  if (!dateStr || dateStr === "—" || dateStr.trim() === "") return 0;
+  const m = dateStr.match(/(\d{4})年(\d{1,2})月(?:(\d{1,2})日)?/);
+  if (!m) return 0;
+  const y = Number(m[1]);
+  const mo = Number(m[2]) - 1;
+  const day = m[3] ? Number(m[3]) : 1;
+  return new Date(y, mo, day).getTime();
+}
+
+/** 时间段字符串取结束段再解析（如「2021年9月 - 2024年6月」→ 2024年6月） */
+function parseDurationEndForSort(durationStr: string): number {
+  if (!durationStr || durationStr === "—") return 0;
+  const parts = durationStr.split(/\s*-\s*/);
+  const end = parts[parts.length - 1]?.trim() ?? "";
+  return parseChineseDateForSort(end);
 }
 
 // 教育经历表格列定义
@@ -159,8 +186,11 @@ const trainingColumns = [
 // 资格证书表格列定义
 const certificatesColumns = [
   { key: "name", title: "证书名称" },
-  { key: "issuer", title: "颁发机构" },
-  { key: "date", title: "获得时间" }
+  { key: "level", title: "级别" },
+  { key: "subject", title: "考试科目" },
+  { key: "grade", title: "等第 / 成绩" },
+  { key: "date", title: "获得时间" },
+  { key: "issuer", title: "颁发机构" }
 ];
 
 // 家庭背景表格列定义
@@ -179,9 +209,32 @@ const addressColumns = [
 ];
 
 // 数据（JSON）
-const educationData = reactive(aboutData.education.data);
-const trainingData = reactive(aboutData.training.data);
-const certificatesData = reactive(aboutData.certificates.data as Certificate[]);
+// 教育经历按时间段结束时间倒序（新 → 旧）
+const educationData = computed(() => {
+  const list = [...aboutData.education.data];
+  list.sort(
+    (a, b) =>
+      parseDurationEndForSort(b.duration) - parseDurationEndForSort(a.duration)
+  );
+  return list;
+});
+// 培训经历按时间段结束时间倒序
+const trainingData = computed(() => {
+  const list = [...aboutData.training.data];
+  list.sort(
+    (a, b) =>
+      parseDurationEndForSort(b.duration) - parseDurationEndForSort(a.duration)
+  );
+  return list;
+});
+// 资格证书按获得时间倒序（新 → 旧；无日期在后）
+const certificatesData = computed(() => {
+  const list = [...(aboutData.certificates.data as Certificate[])];
+  list.sort(
+    (a, b) => parseChineseDateForSort(b.date) - parseChineseDateForSort(a.date)
+  );
+  return list;
+});
 const familyData = reactive(aboutData.familyBackground.data);
 const addressData = reactive(aboutData.address.data);
 </script>

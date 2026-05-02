@@ -1,6 +1,11 @@
 <template>
   <div class="ls-table-wrapper">
-    <n-table :bordered="bordered" :single-line="singleLine" :size="size" :striped="striped">
+    <n-table
+      :bordered="bordered"
+      :single-line="singleLine"
+      :size="size"
+      :striped="showStripes"
+    >
       <thead>
         <tr>
           <th v-for="col in columns" :key="col.key">{{ col.title }}</th>
@@ -37,8 +42,8 @@ const props = withDefaults(defineProps<Props>(), {
   size: 'small'
 })
 
-// 数据超过3行时启用条纹效果
-const striped = computed(() => props.data.length > 3)
+/** 数据行超过 3 行时启用条纹（依赖 n-table 的 striped，tbody 内偶数行着色） */
+const showStripes = computed(() => (props.data?.length ?? 0) >= 3)
 </script>
 
 <style scoped lang="scss">
