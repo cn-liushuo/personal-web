@@ -9,32 +9,115 @@
           以下为住址、家庭背景及教育、培训与资格等信息展示。
         </p>
 
+        <!-- 教育经历 -->
         <section class="about-section">
-          <LsSectionTitle compact>教育经历</LsSectionTitle>
-          <LsTable :columns="educationColumns" :data="educationData" />
+          <LsSectionTitle>教育经历</LsSectionTitle>
+          <!-- 桌面端：表格 -->
+          <div class="table-desktop">
+            <LsTable :columns="educationColumns" :data="educationData" />
+          </div>
+          <!-- 移动端：卡片 -->
+          <div class="cards-mobile">
+            <n-card
+              v-for="(item, index) in educationData"
+              :key="index"
+              size="small"
+              :title="item.duration"
+              class="info-card"
+            >
+              <p class="card-item"><span class="card-label">学校：</span>{{ item.school }}</p>
+              <p class="card-item"><span class="card-label">专业：</span>{{ item.major }}</p>
+              <p class="card-item"><span class="card-label">学历：</span>{{ item.degree }}</p>
+              <p class="card-item"><span class="card-label">学位：</span>{{ item.academic }}</p>
+              <p class="card-item"><span class="card-label">在校经历：</span>{{ item.experience }}</p>
+            </n-card>
+          </div>
         </section>
 
+        <!-- 培训经历 -->
         <section class="about-section">
-          <LsSectionTitle compact>培训经历</LsSectionTitle>
-          <LsTable :columns="trainingColumns" :data="trainingData" />
+          <LsSectionTitle>培训经历</LsSectionTitle>
+          <div class="table-desktop">
+            <LsTable :columns="trainingColumns" :data="trainingData" />
+          </div>
+          <div class="cards-mobile">
+            <n-card
+              v-for="(item, index) in trainingData"
+              :key="index"
+              size="small"
+              :title="item.duration"
+              class="info-card"
+            >
+              <p class="card-item"><span class="card-label">机构：</span>{{ item.institution }}</p>
+              <p class="card-item"><span class="card-label">课程：</span>{{ item.course }}</p>
+            </n-card>
+          </div>
         </section>
 
+        <!-- 资格证书 -->
         <section class="about-section">
-          <LsSectionTitle compact>资格证书</LsSectionTitle>
+          <LsSectionTitle>资格证书</LsSectionTitle>
           <p v-if="certificatesData.length === 0" class="placeholder">
             暂无证书信息
           </p>
-          <LsTable v-else :columns="certificatesColumns" :data="certificatesData" />
+          <template v-else>
+            <div class="table-desktop">
+              <LsTable :columns="certificatesColumns" :data="certificatesData" />
+            </div>
+            <div class="cards-mobile">
+              <n-card
+                v-for="(item, index) in certificatesData"
+                :key="index"
+                size="small"
+                :title="item.name"
+                class="info-card"
+              >
+                <p class="card-item"><span class="card-label">颁发机构：</span>{{ item.issuer }}</p>
+                <p class="card-item"><span class="card-label">获得时间：</span>{{ item.date }}</p>
+              </n-card>
+            </div>
+          </template>
         </section>
 
+        <!-- 家庭背景 -->
         <section class="about-section">
-          <LsSectionTitle compact>家庭背景</LsSectionTitle>
-          <LsTable :columns="familyColumns" :data="familyData" />
+          <LsSectionTitle>家庭背景</LsSectionTitle>
+          <div class="table-desktop">
+            <LsTable :columns="familyColumns" :data="familyData" />
+          </div>
+          <div class="cards-mobile">
+            <n-card
+              v-for="(item, index) in familyData"
+              :key="index"
+              size="small"
+              :title="item.relation"
+              class="info-card"
+            >
+              <p class="card-item"><span class="card-label">姓名：</span>{{ item.name }}</p>
+              <p class="card-item"><span class="card-label">出生日期：</span>{{ item.birthDate }}</p>
+              <p class="card-item"><span class="card-label">职业：</span>{{ item.occupation }}</p>
+              <p class="card-item"><span class="card-label">年收入：</span>{{ item.income }}</p>
+            </n-card>
+          </div>
         </section>
 
+        <!-- 住址 -->
         <section class="about-section">
-          <LsSectionTitle compact>住址</LsSectionTitle>
-          <LsTable :columns="addressColumns" :data="addressData" />
+          <LsSectionTitle>住址</LsSectionTitle>
+          <div class="table-desktop">
+            <LsTable :columns="addressColumns" :data="addressData" />
+          </div>
+          <div class="cards-mobile">
+            <n-card
+              v-for="(item, index) in addressData"
+              :key="index"
+              size="small"
+              :title="item.type"
+              class="info-card"
+            >
+              <p class="card-item">{{ item.value }}</p>
+            </n-card>
+          </div>
         </section>
       </n-space>
     </div>
@@ -98,6 +181,12 @@ const addressData = reactive(aboutData.address.data);
   width: 100%;
 }
 
+.about-section {
+  :deep(.ls-section-title) {
+    margin-bottom: 8px;
+  }
+}
+
 .intro {
   margin: 0;
   line-height: 1.8;
@@ -109,6 +198,53 @@ const addressData = reactive(aboutData.address.data);
   color: rgba(0, 0, 0, 0.55);
 }
 
+.cards-mobile {
+  display: none;
+}
+
+.info-card {
+  margin-bottom: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  :deep(.n-card-header) {
+    background: rgba(var(--ls-theme-rgb), 0.08);
+    border-bottom: 1px solid rgba(var(--ls-theme-rgb), 0.15);
+    padding: 12px 16px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  :deep(.n-card-header__main) {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 15px;
+  }
+
+  :deep(.n-card__content) {
+    padding: 16px;
+  }
+}
+
+.card-item {
+  margin: 0 0 10px;
+  line-height: 1.5;
+  font-size: 14px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.card-label {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+  margin-right: 4px;
+}
+
 /* 移动端适配 */
 @media screen and (max-width: 768px) {
   :deep(.ls-section-title__text) {
@@ -118,6 +254,14 @@ const addressData = reactive(aboutData.address.data);
   .intro {
     font-size: 14px;
     line-height: 1.6;
+  }
+
+  .table-desktop {
+    display: none;
+  }
+
+  .cards-mobile {
+    display: block;
   }
 }
 
