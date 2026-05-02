@@ -1,154 +1,69 @@
 <template>
   <LsCardBody>
     <div class="tech-stack">
-    <LsPageTitle>技术</LsPageTitle>
+      <LsPageTitle>技术</LsPageTitle>
 
-    <div class="tech-columns">
-      <!-- Frontend(前端) -->
-      <section class="tech-category">
-        <LsSectionTitle tag="h2">Frontend(前端)</LsSectionTitle>
-        <n-space vertical :size="12">
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">Vue(渐进式框架)</span>
-              <span class="skill-level">精通</span>
-            </div>
-            <n-progress type="line" :percentage="90" indicator-placement="inside" />
-          </div>
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">TypeScript(类型脚本)</span>
-              <span class="skill-level">熟练</span>
-            </div>
-            <n-progress type="line" :percentage="85" indicator-placement="inside" />
-          </div>
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">Vite(前端构建工具)</span>
-              <span class="skill-level">熟练</span>
-            </div>
-            <n-progress type="line" :percentage="80" indicator-placement="inside" />
-          </div>
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">JavaScript(脚本语言)</span>
-              <span class="skill-level">精通</span>
-            </div>
-            <n-progress type="line" :percentage="90" indicator-placement="inside" />
-          </div>
-        </n-space>
-      </section>
+      <div class="tech-columns">
+        <!-- Frontend(前端) -->
+        <section class="tech-category">
+          <LsSectionTitle tag="h2">Frontend(前端)</LsSectionTitle>
+          <n-space vertical :size="12">
+            <LsSkillItem name="TypeScript(类型脚本)" :percentage="90" />
+            <LsSkillItem name="Vite(前端构建工具)" :percentage="60" />
+            <LsSkillItem name="Vue(渐进式框架)" :percentage="90" />
+            <LsSkillItem name="JQuery(JavaScript库)" :percentage="60" />
+            <LsSkillItem name="JavaScript(脚本语言)" :percentage="90" />
+            <LsSkillItem name="CSS(层叠样式表)" :percentage="95" />
+            <LsSkillItem name="HTML(超文本标记语言)" :percentage="99" />
+          </n-space>
+        </section>
 
-      <!-- Backend(后端) -->
-      <section class="tech-category">
-        <LsSectionTitle tag="h2">Backend(后端)</LsSectionTitle>
-        <n-space vertical :size="12">
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">Node.js(JavaScript运行时)</span>
-              <span class="skill-level">了解</span>
-            </div>
-            <n-progress type="line" :percentage="50" indicator-placement="inside" />
-          </div>
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">MySQL(关系型数据库)</span>
-              <span class="skill-level">了解</span>
-            </div>
-            <n-progress type="line" :percentage="45" indicator-placement="inside" />
-          </div>
-        </n-space>
-      </section>
+        <!-- Backend(后端) -->
+        <section class="tech-category">
+          <LsSectionTitle tag="h2">Backend(后端)</LsSectionTitle>
+          <n-space vertical :size="12">
+            <LsSkillItem name="Node.js(JavaScript运行时)" :percentage="50" />
+            <LsSkillItem name="MySQL(关系型数据库)" :percentage="45" />
+          </n-space>
+        </section>
 
-      <!-- Testing(测试) -->
-      <section class="tech-category">
-        <LsSectionTitle tag="h2">Testing(测试)</LsSectionTitle>
-        <n-space vertical :size="12">
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">Vitest(单元测试框架)</span>
-              <span class="skill-level">了解</span>
-            </div>
-            <n-progress type="line" :percentage="40" indicator-placement="inside" />
-          </div>
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">Playwright(E2E测试工具)</span>
-              <span class="skill-level">了解</span>
-            </div>
-            <n-progress type="line" :percentage="35" indicator-placement="inside" />
-          </div>
-        </n-space>
-      </section>
+        <!-- Testing(测试) -->
+        <section class="tech-category">
+          <LsSectionTitle tag="h2">Testing(测试)</LsSectionTitle>
+          <n-space vertical :size="12">
+            <LsSkillItem name="Vitest(单元测试框架)" :percentage="40" />
+            <LsSkillItem name="Playwright(E2E测试工具)" :percentage="35" />
+          </n-space>
+        </section>
 
-      <!-- DevOps(运维) -->
-      <section class="tech-category">
-        <LsSectionTitle tag="h2">DevOps(运维)</LsSectionTitle>
-        <n-space vertical :size="12">
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">Git(版本控制)</span>
-              <span class="skill-level">熟练</span>
-            </div>
-            <n-progress type="line" :percentage="85" indicator-placement="inside" />
-          </div>
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">Jenkins(CI/CD)</span>
-              <span class="skill-level">了解</span>
-            </div>
-            <n-progress type="line" :percentage="45" indicator-placement="inside" />
-          </div>
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">Docker(容器化)</span>
-              <span class="skill-level">了解</span>
-            </div>
-            <n-progress type="line" :percentage="40" indicator-placement="inside" />
-          </div>
-        </n-space>
-      </section>
+        <!-- DevOps(运维) -->
+        <section class="tech-category">
+          <LsSectionTitle tag="h2">DevOps(运维)</LsSectionTitle>
+          <n-space vertical :size="12">
+            <LsSkillItem name="Git(版本控制)" :percentage="85" />
+            <LsSkillItem name="Jenkins(CI/CD)" :percentage="45" />
+            <LsSkillItem name="Docker(容器化)" :percentage="40" />
+          </n-space>
+        </section>
 
-      <!-- Agent(智能体) -->
-      <section class="tech-category">
-        <LsSectionTitle tag="h2">Agent(智能体)</LsSectionTitle>
-        <n-space vertical :size="12">
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">Prompt Engineering(提示词工程)</span>
-              <span class="skill-level">熟练</span>
-            </div>
-            <n-progress type="line" :percentage="75" indicator-placement="inside" />
-          </div>
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">MCP(Model Context Protocol)</span>
-              <span class="skill-level">了解</span>
-            </div>
-            <n-progress type="line" :percentage="50" indicator-placement="inside" />
-          </div>
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">RAG(检索增强生成)</span>
-              <span class="skill-level">了解</span>
-            </div>
-            <n-progress type="line" :percentage="45" indicator-placement="inside" />
-          </div>
-          <div class="skill-item">
-            <div class="skill-info">
-              <span class="skill-name">LangChain(LangChain框架)</span>
-              <span class="skill-level">了解</span>
-            </div>
-            <n-progress type="line" :percentage="40" indicator-placement="inside" />
-          </div>
-        </n-space>
-      </section>
-    </div>
+        <!-- Agent(智能体) -->
+        <section class="tech-category">
+          <LsSectionTitle tag="h2">Agent(智能体)</LsSectionTitle>
+          <n-space vertical :size="12">
+            <LsSkillItem name="Prompt Engineering(提示词工程)" :percentage="75" />
+            <LsSkillItem name="MCP(Model Context Protocol)" :percentage="50" />
+            <LsSkillItem name="RAG(检索增强生成)" :percentage="45" />
+            <LsSkillItem name="LangChain(LangChain框架)" :percentage="40" />
+          </n-space>
+        </section>
+      </div>
     </div>
   </LsCardBody>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import LsSkillItem from '@/components/lsSkillItem.vue'
+</script>
 
 <style scoped lang="scss">
 .tech-stack {
@@ -179,32 +94,5 @@
   .tech-columns {
     grid-template-columns: 1fr;
   }
-}
-
-.skill-item {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.skill-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 8px;
-  margin-bottom: 4px;
-}
-
-.skill-name {
-  font-size: 13px;
-  line-height: 1.4;
-  color: #000000;
-  word-break: break-word;
-}
-
-.skill-level {
-  flex-shrink: 0;
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.55);
 }
 </style>

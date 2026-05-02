@@ -126,7 +126,7 @@
 
 <script setup lang="ts">
 import { reactive } from "vue";
-import LsTable from "@/components/LsTable.vue";
+import LsTable from "@/components/lsTable.vue";
 import aboutData from "@/data/aboutData.json";
 
 // 类型定义

@@ -42,7 +42,7 @@
 
 <script setup lang="ts">
 import { reactive } from "vue";
-import LsTable from "@/components/LsTable.vue";
+import LsTable from "@/components/lsTable.vue";
 import workJson from "@/data/workData.json";
 
 // 工作经历表格列定义
