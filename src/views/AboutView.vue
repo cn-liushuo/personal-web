@@ -51,12 +51,30 @@
 
         <section class="about-section">
           <LsSectionTitle compact>培训经历</LsSectionTitle>
-          <p class="about-section__placeholder">
-            机构、课程主题、时长与结业时间等，后续在此补充。
-          </p>
+          <n-space vertical :size="8">
+            <p class="about-section__placeholder about-inline-item">
+              <strong class="about-item-label">
+                <span class="about-item-label-text">机构</span>
+                <span class="about-item-colon">：</span>
+              </strong>
+              <span class="about-item-value">青岛百杉软件科技有限公司</span>
+            </p>
+            <p class="about-section__placeholder about-inline-item">
+              <strong class="about-item-label">
+                <span class="about-item-label-text">课程</span>
+                <span class="about-item-colon">：</span>
+              </strong>
+              <span class="about-item-value">前端开发、Java 开发</span>
+            </p>
+            <p class="about-section__placeholder about-inline-item">
+              <strong class="about-item-label">
+                <span class="about-item-label-text">时间</span>
+                <span class="about-item-colon">：</span>
+              </strong>
+              <span class="about-item-value">2024年3月 - 2024年6月</span>
+            </p>
+          </n-space>
         </section>
-
-        <n-divider dashed />
 
         <section class="about-section">
           <LsSectionTitle compact>资格证书</LsSectionTitle>
