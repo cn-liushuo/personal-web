@@ -58,6 +58,9 @@ git pull origin develop
 git checkout master
 git merge develop
 git push origin master
+
+# 发布完成后回退到 develop 分支（继续开发）
+git checkout develop
 ```
 
 ## 注意事项
