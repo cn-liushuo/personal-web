@@ -1,7 +1,7 @@
 <template>
-  <LsCardBody>
+  <lsCardBody>
     <div class="about">
-      <LsPageTitle>关于</LsPageTitle>
+      <lsPageTitle>关于</lsPageTitle>
 
       <n-space vertical :size="24">
         <p class="intro">
@@ -11,10 +11,10 @@
 
         <!-- 教育经历 -->
         <section class="about-section">
-          <LsSectionTitle>教育经历</LsSectionTitle>
+          <lsSectionTitle>教育经历</lsSectionTitle>
           <!-- 桌面端：表格 -->
           <div class="table-desktop">
-            <LsTable :columns="educationColumns" :data="educationData" />
+            <lsTable :columns="educationColumns" :data="educationData" />
           </div>
           <!-- 移动端：卡片 -->
           <div class="cards-mobile">
@@ -36,9 +36,9 @@
 
         <!-- 培训经历 -->
         <section class="about-section">
-          <LsSectionTitle>培训经历</LsSectionTitle>
+          <lsSectionTitle>培训经历</lsSectionTitle>
           <div class="table-desktop">
-            <LsTable :columns="trainingColumns" :data="trainingData" />
+            <lsTable :columns="trainingColumns" :data="trainingData" />
           </div>
           <div class="cards-mobile">
             <n-card
@@ -56,13 +56,13 @@
 
         <!-- 资格证书 -->
         <section class="about-section">
-          <LsSectionTitle>资格证书</LsSectionTitle>
+          <lsSectionTitle>资格证书</lsSectionTitle>
           <p v-if="certificatesData.length === 0" class="placeholder">
             暂无证书信息
           </p>
           <template v-else>
             <div class="table-desktop">
-              <LsTable :columns="certificatesColumns" :data="certificatesData" />
+              <lsTable :columns="certificatesColumns" :data="certificatesData" />
             </div>
             <div class="cards-mobile">
               <n-card
@@ -81,9 +81,9 @@
 
         <!-- 家庭背景 -->
         <section class="about-section">
-          <LsSectionTitle>家庭背景</LsSectionTitle>
+          <lsSectionTitle>家庭背景</lsSectionTitle>
           <div class="table-desktop">
-            <LsTable :columns="familyColumns" :data="familyData" />
+            <lsTable :columns="familyColumns" :data="familyData" />
           </div>
           <div class="cards-mobile">
             <n-card
@@ -103,9 +103,9 @@
 
         <!-- 住址 -->
         <section class="about-section">
-          <LsSectionTitle>住址</LsSectionTitle>
+          <lsSectionTitle>住址</lsSectionTitle>
           <div class="table-desktop">
-            <LsTable :columns="addressColumns" :data="addressData" />
+            <lsTable :columns="addressColumns" :data="addressData" />
           </div>
           <div class="cards-mobile">
             <n-card
@@ -121,12 +121,15 @@
         </section>
       </n-space>
     </div>
-  </LsCardBody>
+  </lsCardBody>
 </template>
 
 <script setup lang="ts">
 import { reactive } from "vue";
-import LsTable from "@/components/lsTable.vue";
+import lsCardBody from "@/components/lsCardBody.vue";
+import lsPageTitle from "@/components/lsPageTitle.vue";
+import lsSectionTitle from "@/components/lsSectionTitle.vue";
+import lsTable from "@/components/lsTable.vue";
 import aboutData from "@/data/aboutData.json";
 
 // 类型定义

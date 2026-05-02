@@ -1,7 +1,7 @@
 <template>
-  <LsCardBody>
+  <lsCardBody>
     <div class="work">
-      <LsPageTitle>工作</LsPageTitle>
+      <lsPageTitle>工作</lsPageTitle>
       <n-space vertical :size="24">
         <p class="intro">
           以下为工作经历与职责说明。
@@ -9,7 +9,7 @@
 
         <!-- 桌面端：表格 -->
         <div class="work-table-desktop">
-          <LsTable :columns="workColumns" :data="workData" />
+          <lsTable :columns="workColumns" :data="workData" />
         </div>
 
         <!-- 移动端：卡片 -->
@@ -37,12 +37,14 @@
         </div>
       </n-space>
     </div>
-  </LsCardBody>
+  </lsCardBody>
 </template>
 
 <script setup lang="ts">
 import { reactive } from "vue";
-import LsTable from "@/components/lsTable.vue";
+import lsCardBody from "@/components/lsCardBody.vue";
+import lsPageTitle from "@/components/lsPageTitle.vue";
+import lsTable from "@/components/lsTable.vue";
 import workJson from "@/data/workData.json";
 
 // 工作经历表格列定义

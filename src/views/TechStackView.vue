@@ -1,68 +1,71 @@
 <template>
-  <LsCardBody>
+  <lsCardBody>
     <div class="tech-stack">
-      <LsPageTitle>技术</LsPageTitle>
+      <lsPageTitle>技术</lsPageTitle>
 
       <div class="tech-columns">
         <!-- Frontend(前端) -->
         <section class="tech-category">
-          <LsSectionTitle tag="h2">Frontend(前端)</LsSectionTitle>
+          <lsSectionTitle tag="h2">Frontend(前端)</lsSectionTitle>
           <n-space vertical :size="12">
-            <LsSkillItem name="TypeScript(类型脚本)" :percentage="90" />
-            <LsSkillItem name="Vite(前端构建工具)" :percentage="60" />
-            <LsSkillItem name="Vue(渐进式框架)" :percentage="90" />
-            <LsSkillItem name="JQuery(JavaScript库)" :percentage="60" />
-            <LsSkillItem name="JavaScript(脚本语言)" :percentage="90" />
-            <LsSkillItem name="CSS(层叠样式表)" :percentage="95" />
-            <LsSkillItem name="HTML(超文本标记语言)" :percentage="99" />
+            <lsSkillItem name="TypeScript(类型脚本)" :percentage="90" />
+            <lsSkillItem name="Vite(前端构建工具)" :percentage="60" />
+            <lsSkillItem name="Vue(渐进式框架)" :percentage="90" />
+            <lsSkillItem name="JQuery(JavaScript库)" :percentage="60" />
+            <lsSkillItem name="JavaScript(脚本语言)" :percentage="90" />
+            <lsSkillItem name="CSS(层叠样式表)" :percentage="95" />
+            <lsSkillItem name="HTML(超文本标记语言)" :percentage="99" />
           </n-space>
         </section>
 
         <!-- Backend(后端) -->
         <section class="tech-category">
-          <LsSectionTitle tag="h2">Backend(后端)</LsSectionTitle>
+          <lsSectionTitle tag="h2">Backend(后端)</lsSectionTitle>
           <n-space vertical :size="12">
-            <LsSkillItem name="Node.js(JavaScript运行时)" :percentage="50" />
-            <LsSkillItem name="MySQL(关系型数据库)" :percentage="45" />
+            <lsSkillItem name="Node.js(JavaScript运行时)" :percentage="50" />
+            <lsSkillItem name="MySQL(关系型数据库)" :percentage="45" />
           </n-space>
         </section>
 
         <!-- Testing(测试) -->
         <section class="tech-category">
-          <LsSectionTitle tag="h2">Testing(测试)</LsSectionTitle>
+          <lsSectionTitle tag="h2">Testing(测试)</lsSectionTitle>
           <n-space vertical :size="12">
-            <LsSkillItem name="Vitest(单元测试框架)" :percentage="40" />
-            <LsSkillItem name="Playwright(E2E测试工具)" :percentage="35" />
+            <lsSkillItem name="Vitest(单元测试框架)" :percentage="40" />
+            <lsSkillItem name="Playwright(E2E测试工具)" :percentage="35" />
           </n-space>
         </section>
 
         <!-- DevOps(运维) -->
         <section class="tech-category">
-          <LsSectionTitle tag="h2">DevOps(运维)</LsSectionTitle>
+          <lsSectionTitle tag="h2">DevOps(运维)</lsSectionTitle>
           <n-space vertical :size="12">
-            <LsSkillItem name="Git(版本控制)" :percentage="85" />
-            <LsSkillItem name="Jenkins(CI/CD)" :percentage="45" />
-            <LsSkillItem name="Docker(容器化)" :percentage="40" />
+            <lsSkillItem name="Git(版本控制)" :percentage="85" />
+            <lsSkillItem name="Jenkins(CI/CD)" :percentage="45" />
+            <lsSkillItem name="Docker(容器化)" :percentage="40" />
           </n-space>
         </section>
 
         <!-- Agent(智能体) -->
         <section class="tech-category">
-          <LsSectionTitle tag="h2">Agent(智能体)</LsSectionTitle>
+          <lsSectionTitle tag="h2">Agent(智能体)</lsSectionTitle>
           <n-space vertical :size="12">
-            <LsSkillItem name="Prompt Engineering(提示词工程)" :percentage="75" />
-            <LsSkillItem name="MCP(Model Context Protocol)" :percentage="50" />
-            <LsSkillItem name="RAG(检索增强生成)" :percentage="45" />
-            <LsSkillItem name="LangChain(LangChain框架)" :percentage="40" />
+            <lsSkillItem name="Prompt Engineering(提示词工程)" :percentage="75" />
+            <lsSkillItem name="MCP(Model Context Protocol)" :percentage="50" />
+            <lsSkillItem name="RAG(检索增强生成)" :percentage="45" />
+            <lsSkillItem name="LangChain(LangChain框架)" :percentage="40" />
           </n-space>
         </section>
       </div>
     </div>
-  </LsCardBody>
+  </lsCardBody>
 </template>
 
 <script setup lang="ts">
-import LsSkillItem from '@/components/lsSkillItem.vue'
+import lsCardBody from '@/components/lsCardBody.vue'
+import lsPageTitle from '@/components/lsPageTitle.vue'
+import lsSectionTitle from '@/components/lsSectionTitle.vue'
+import lsSkillItem from '@/components/lsSkillItem.vue'
 </script>
 
 <style scoped lang="scss">

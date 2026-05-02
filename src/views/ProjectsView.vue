@@ -1,7 +1,7 @@
 <template>
-  <LsCardBody>
+  <lsCardBody>
     <div class="projects">
-      <LsPageTitle>项目</LsPageTitle>
+      <lsPageTitle>项目</lsPageTitle>
       <n-space vertical :size="12">
         <p>
           这里将展示个人项目与开源贡献，内容后续补充。
@@ -11,10 +11,13 @@
         </n-alert>
       </n-space>
     </div>
-  </LsCardBody>
+  </lsCardBody>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import lsCardBody from "@/components/lsCardBody.vue";
+import lsPageTitle from "@/components/lsPageTitle.vue";
+</script>
 
 <style scoped lang="scss">
 .projects {

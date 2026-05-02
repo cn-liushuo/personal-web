@@ -1,12 +1,15 @@
 <template>
-  <LsCardBody>
+  <lsCardBody>
     <div class="login-page">
-      <LsPageTitle>登录</LsPageTitle>
+      <lsPageTitle>登录</lsPageTitle>
       login
     </div>
-  </LsCardBody>
+  </lsCardBody>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import lsCardBody from "@/components/lsCardBody.vue";
+import lsPageTitle from "@/components/lsPageTitle.vue";
+</script>
 
 <style scoped lang="scss"></style>
