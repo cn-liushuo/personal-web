@@ -50,6 +50,8 @@ import aboutData from "@/data/aboutData.json";
 const educationColumns = [
   { key: "school", title: "学校" },
   { key: "major", title: "专业" },
+  { key: "degree", title: "学历" },
+  { key: "academic", title: "学位" },
   { key: "duration", title: "时间" },
   { key: "experience", title: "在校经历" }
 ];
@@ -105,5 +107,24 @@ const addressData = reactive(aboutData.address.data);
   margin: 0;
   line-height: 1.8;
   color: rgba(0, 0, 0, 0.55);
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+  :deep(.ls-section-title__text) {
+    font-size: 16px;
+  }
+
+  .intro {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+/* 平板端适配 */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  :deep(.ls-section-title__text) {
+    font-size: 17px;
+  }
 }
 </style>
