@@ -183,14 +183,14 @@ const trainingColumns = [
   { key: "duration", title: "时间" }
 ];
 
-// 资格证书表格列定义
+// 资格证书表格列定义（长文四列单行省略，见 lsTable Column.ellipsis）
 const certificatesColumns = [
-  { key: "name", title: "证书名称" },
+  { key: "name", title: "证书名称", ellipsis: true, maxWidth: 220 },
   { key: "level", title: "级别" },
-  { key: "subject", title: "考试科目" },
+  { key: "subject", title: "考试科目", ellipsis: true, maxWidth: 300 },
   { key: "grade", title: "等第 / 成绩" },
-  { key: "date", title: "获得时间" },
-  { key: "issuer", title: "颁发机构" }
+  { key: "date", title: "获得时间", ellipsis: true, maxWidth: 132 },
+  { key: "issuer", title: "颁发机构", ellipsis: true, maxWidth: 240 }
 ];
 
 // 家庭背景表格列定义

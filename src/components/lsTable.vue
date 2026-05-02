@@ -13,7 +13,20 @@
       </thead>
       <tbody>
         <tr v-for="(row, index) in data" :key="index">
-          <td v-for="col in columns" :key="col.key">{{ row[col.key] }}</td>
+          <td
+            v-for="col in columns"
+            :key="col.key"
+            :style="cellTdStyle(col)"
+          >
+            <n-ellipsis
+              v-if="col.ellipsis"
+              :tooltip="true"
+              class="ls-td-ellipsis"
+            >
+              {{ cellText(row, col.key) }}
+            </n-ellipsis>
+            <template v-else>{{ cellText(row, col.key) }}</template>
+          </td>
         </tr>
       </tbody>
     </n-table>
@@ -23,9 +36,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-interface Column {
+export interface Column {
   key: string
   title: string
+  /** 为 true 时单行不换行，超出用 n-ellipsis 省略并可在 tooltip 中查看全文 */
+  ellipsis?: boolean
+  /** 与 ellipsis 搭配：单元格最大宽度（数字为 px，或任意 CSS 长度） */
+  maxWidth?: string | number
 }
 
 interface Props {
@@ -44,6 +61,24 @@ const props = withDefaults(defineProps<Props>(), {
 
 /** 数据行超过 3 行（至少 4 行）时启用条纹；依赖 n-table 的 striped，tbody 内偶数行着色 */
 const showStripes = computed(() => (props.data?.length ?? 0) >= 3)
+
+function cssMaxWidth(col: Column): string {
+  if (col.maxWidth == null) return '200px'
+  return typeof col.maxWidth === 'number' ? `${col.maxWidth}px` : String(col.maxWidth)
+}
+
+/** 省略列需限制 td 宽度，否则表格会一直撑开无法触发省略 */
+function cellTdStyle(col: Column): Record<string, string> | undefined {
+  if (!col.ellipsis) return undefined
+  const w = cssMaxWidth(col)
+  return { maxWidth: w, width: w }
+}
+
+function cellText(row: Record<string, any>, key: string): string {
+  const v = row[key]
+  if (v == null) return ''
+  return String(v)
+}
 </script>
 
 <style scoped lang="scss">
@@ -64,5 +99,11 @@ const showStripes = computed(() => (props.data?.length ?? 0) >= 3)
       border-radius: 3px;
     }
   }
+}
+
+/* n-ellipsis 在 td 内占满宽度，避免单元格被长文撑开换行 */
+.ls-td-ellipsis {
+  display: block;
+  max-width: 100%;
 }
 </style>
