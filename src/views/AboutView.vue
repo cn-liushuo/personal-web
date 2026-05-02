@@ -129,6 +129,13 @@ import { reactive } from "vue";
 import LsTable from "@/components/LsTable.vue";
 import aboutData from "@/data/aboutData.json";
 
+// 类型定义
+interface Certificate {
+  name: string;
+  issuer: string;
+  date: string;
+}
+
 // 教育经历表格列定义
 const educationColumns = [
   { key: "school", title: "学校" },
@@ -171,7 +178,7 @@ const addressColumns = [
 // 数据（JSON）
 const educationData = reactive(aboutData.education.data);
 const trainingData = reactive(aboutData.training.data);
-const certificatesData = reactive(aboutData.certificates.data);
+const certificatesData = reactive(aboutData.certificates.data as Certificate[]);
 const familyData = reactive(aboutData.familyBackground.data);
 const addressData = reactive(aboutData.address.data);
 </script>
