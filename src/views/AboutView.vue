@@ -227,12 +227,15 @@ const trainingData = computed(() => {
   );
   return list;
 });
-// 资格证书按获得时间倒序（新 → 旧；无日期在后）
+// 资格证书按「获得时间」date 降序（新 → 旧）；同日或无法解析时按证书名称稳定排序
 const certificatesData = computed(() => {
   const list = [...(aboutData.certificates.data as Certificate[])];
-  list.sort(
-    (a, b) => parseChineseDateForSort(b.date) - parseChineseDateForSort(a.date)
-  );
+  list.sort((a, b) => {
+    const tb = parseChineseDateForSort(b.date);
+    const ta = parseChineseDateForSort(a.date);
+    if (tb !== ta) return tb - ta;
+    return String(a.name).localeCompare(String(b.name), "zh-Hans-CN");
+  });
   return list;
 });
 const familyData = reactive(aboutData.familyBackground.data);
