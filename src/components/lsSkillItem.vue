@@ -41,7 +41,8 @@ const skillInfo = computed((): SkillLevel => {
       return level
     }
   }
-  return skillLevels[0]
+  // 数组恒有首项；超出区间时回退到最低档
+  return skillLevels[0]!
 })
 </script>
 
