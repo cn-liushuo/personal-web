@@ -6,126 +6,90 @@
       <n-space vertical :size="24">
         <p class="intro">
           我是刘铄，一名偏 Frontend(前端)和Agent(智能体) 的软件开发工程师。
-          以下为住址、家庭背景及教育、培训与资格等信息展示位，条目将随时间补充更新。
+          以下为住址、家庭背景及教育、培训与资格等信息展示。
         </p>
 
         <section class="about-section">
           <LsSectionTitle compact>教育经历</LsSectionTitle>
-          <n-space vertical :size="8">
-            <p class="about-section__placeholder about-inline-item">
-              <strong class="about-item-label">
-                <span class="about-item-label-text">学校</span>
-                <span class="about-item-colon">：</span>
-              </strong>
-              <span class="about-item-value">东营科技职业学院</span>
-            </p>
-            <p class="about-section__placeholder about-inline-item">
-              <strong class="about-item-label">
-                <span class="about-item-label-text">专业</span>
-                <span class="about-item-colon">：</span>
-              </strong>
-              <span class="about-item-value">现代移动通信技术</span>
-            </p>
-            <p class="about-section__placeholder about-inline-item">
-              <strong class="about-item-label">
-                <span class="about-item-label-text">时间</span>
-                <span class="about-item-colon">：</span>
-              </strong>
-              <span class="about-item-value">2021年9月 - 2024年6月</span>
-            </p>
-            <div class="about-multiline">
-              <p class="about-section__placeholder about-multiline__label">
-                <strong class="about-item-label">
-                  <span class="about-item-label-text">在校经历</span>
-                  <span class="about-item-colon">：</span>
-                </strong>
-              </p>
-              <div class="about-multiline__content">
-                <p class="about-section__placeholder">东营科技职业学院秘书部干事；</p>
-                <p class="about-section__placeholder">信息工程学院秘书部部长；</p>
-                <p class="about-section__placeholder">信息工程学院纪检部秘书；</p>
-              </div>
-            </div>
-          </n-space>
+          <LsTable :columns="educationColumns" :data="educationData" />
         </section>
 
         <section class="about-section">
           <LsSectionTitle compact>培训经历</LsSectionTitle>
-          <n-space vertical :size="8">
-            <p class="about-section__placeholder about-inline-item">
-              <strong class="about-item-label">
-                <span class="about-item-label-text">机构</span>
-                <span class="about-item-colon">：</span>
-              </strong>
-              <span class="about-item-value">青岛百杉软件科技有限公司</span>
-            </p>
-            <p class="about-section__placeholder about-inline-item">
-              <strong class="about-item-label">
-                <span class="about-item-label-text">课程</span>
-                <span class="about-item-colon">：</span>
-              </strong>
-              <span class="about-item-value">前端开发、Java 开发</span>
-            </p>
-            <p class="about-section__placeholder about-inline-item">
-              <strong class="about-item-label">
-                <span class="about-item-label-text">时间</span>
-                <span class="about-item-colon">：</span>
-              </strong>
-              <span class="about-item-value">2024年3月 - 2024年6月</span>
-            </p>
-          </n-space>
+          <LsTable :columns="trainingColumns" :data="trainingData" />
         </section>
 
         <section class="about-section">
           <LsSectionTitle compact>资格证书</LsSectionTitle>
-          <p class="about-section__placeholder">
-            证书名称、颁发机构、编号（可选）与有效期等，后续在此补充。
+          <p v-if="certificatesData.length === 0" class="placeholder">
+            暂无证书信息
           </p>
+          <LsTable v-else :columns="certificatesColumns" :data="certificatesData" />
         </section>
-
-        <n-divider dashed />
 
         <section class="about-section">
           <LsSectionTitle compact>家庭背景</LsSectionTitle>
-          <p class="about-section__placeholder">
-            家庭成员概况、成长环境等（注意隐私与表述分寸），后续在此补充。
-          </p>
+          <LsTable :columns="familyColumns" :data="familyData" />
         </section>
-
-        <n-divider dashed />
 
         <section class="about-section">
           <LsSectionTitle compact>住址</LsSectionTitle>
-          <n-space vertical :size="8">
-            <p class="about-section__placeholder about-inline-item">
-              <strong class="about-item-label">
-                <span class="about-item-label-text">现住址</span>
-                <span class="about-item-colon">：</span>
-              </strong>
-              <span class="about-item-value">辽宁省大连市沙河口区西安路街道华阳·风尚小区</span>
-            </p>
-            <p class="about-section__placeholder about-inline-item">
-              <strong class="about-item-label">
-                <span class="about-item-label-text">家庭住址</span>
-                <span class="about-item-colon">：</span>
-              </strong>
-              <span class="about-item-value">赤峰市红山区站前街道金百合北区</span>
-            </p>
-            <p class="about-section__placeholder about-inline-item">
-              <strong class="about-item-label">
-                <span class="about-item-label-text">故乡</span>
-                <span class="about-item-colon">：</span>
-              </strong>
-              <span class="about-item-value">赤峰市喀喇沁旗美林镇福合源村/椴木沟门村</span>
-            </p>
-          </n-space>
+          <LsTable :columns="addressColumns" :data="addressData" />
         </section>
       </n-space>
     </div>
   </LsCardBody>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { reactive } from "vue";
+import LsTable from "@/components/LsTable.vue";
+import aboutData from "@/data/aboutData.json";
+
+// 教育经历表格列定义
+const educationColumns = [
+  { key: "school", title: "学校" },
+  { key: "major", title: "专业" },
+  { key: "duration", title: "时间" },
+  { key: "experience", title: "在校经历" }
+];
+
+// 培训经历表格列定义
+const trainingColumns = [
+  { key: "institution", title: "机构" },
+  { key: "course", title: "课程" },
+  { key: "duration", title: "时间" }
+];
+
+// 资格证书表格列定义
+const certificatesColumns = [
+  { key: "name", title: "证书名称" },
+  { key: "issuer", title: "颁发机构" },
+  { key: "date", title: "获得时间" }
+];
+
+// 家庭背景表格列定义
+const familyColumns = [
+  { key: "relation", title: "称呼" },
+  { key: "name", title: "姓名" },
+  { key: "birthDate", title: "出生日期" },
+  { key: "occupation", title: "职业" },
+  { key: "income", title: "年收入" }
+];
+
+// 住址表格列定义
+const addressColumns = [
+  { key: "type", title: "类型" },
+  { key: "value", title: "地址" }
+];
+
+// 数据（JSON）
+const educationData = reactive(aboutData.education.data);
+const trainingData = reactive(aboutData.training.data);
+const certificatesData = reactive(aboutData.certificates.data);
+const familyData = reactive(aboutData.familyBackground.data);
+const addressData = reactive(aboutData.address.data);
+</script>
 
 <style scoped lang="scss">
 .about {
@@ -137,60 +101,9 @@
   line-height: 1.8;
 }
 
-.about-section__placeholder {
+.placeholder {
   margin: 0;
   line-height: 1.8;
   color: rgba(0, 0, 0, 0.55);
-}
-
-.about-item-label {
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: baseline;
-  width: 6em;
-}
-
-.about-item-label-text {
-  display: inline-block;
-  text-align: justify;
-  text-align-last: justify;
-  text-justify: inter-ideograph;
-  width: calc(100% - 1em);
-}
-
-.about-item-label-text::after {
-  content: "";
-  display: inline-block;
-  width: 100%;
-}
-
-.about-inline-item {
-  display: grid;
-  grid-template-columns: 6em 1fr;
-  align-items: baseline;
-}
-
-.about-multiline {
-  display: grid;
-  grid-template-columns: 6em 1fr;
-  align-items: start;
-  gap: 0;
-}
-
-.about-multiline__label {
-  margin: 0;
-}
-
-.about-multiline__content {
-  p {
-    margin: 0 0 4px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-}
-
-.about-item-value {
-  white-space: nowrap;
 }
 </style>
