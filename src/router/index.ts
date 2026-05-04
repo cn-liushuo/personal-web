@@ -5,14 +5,7 @@ const routes = [
     path: "/",
     redirect: "/home",
   },
-  {
-    path: "/login",
-    name: "login",
-    component: () => import("@/views/LoginView.vue"),
-    meta: {
-      title: "登录",
-    },
-  },
+  
   {
     path: "/home",
     name: "home",

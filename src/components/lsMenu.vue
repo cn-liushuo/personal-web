@@ -35,7 +35,7 @@ const menuOptions = computed<CustomMenuOption[]>(() => {
           (routeItem: RouteRecordRaw) =>
               routeItem.name &&
               routeItem.meta?.title &&
-              !["login"].includes(String(routeItem.name)),
+              
       )
       .map((routeItem: RouteRecordRaw) => ({
         key: String(routeItem.name),
