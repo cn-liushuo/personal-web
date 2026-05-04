@@ -39,14 +39,6 @@ const routes = [
     },
   },
   {
-    path: "/projects/:id",
-    name: "project-detail",
-    component: () => import("@/views/ProjectDetailView.vue"),
-    meta: {
-      title: "项目详情",
-    },
-  },
-  {
     path: "/about",
     name: "about",
     component: () => import("@/views/AboutView.vue"),

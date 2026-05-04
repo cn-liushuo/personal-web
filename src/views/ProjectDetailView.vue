@@ -2,21 +2,18 @@
   <lsCardBody>
     <div class="project-detail">
       <div class="back-btn" @click="goBack">
-        <span class="back-icon">←</span>
-        返回列表
+        <span class="back-icon">↩</span>
       </div>
       
       <div class="detail-header">
         <div class="project-image">
           <img 
+            v-if="!imageError"
             :src="currentImageUrl" 
             :alt="currentProject.name"
             class="project-img"
             @error="handleImageError"
           />
-          <div v-if="imageError" class="image-placeholder">
-            <span class="placeholder-icon">📷</span>
-          </div>
         </div>
         <div class="project-info">
           <h1 class="project-name">{{ currentProject.name }}</h1>
@@ -117,7 +114,6 @@ const goBack = () => {
 .back-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
   padding: 8px 16px;
   margin-bottom: 20px;
   color: #3b82f6;
@@ -126,12 +122,10 @@ const goBack = () => {
 
   &:hover {
     color: #2563eb;
-    text-decoration: underline;
   }
 
   .back-icon {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 20px;
   }
 }
 
@@ -165,19 +159,6 @@ const goBack = () => {
     height: 100%;
     object-fit: cover;
     display: block;
-  }
-
-  .image-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .placeholder-icon {
-      font-size: 64px;
-      opacity: 0.6;
-    }
   }
 }
 

@@ -2,23 +2,17 @@
   <n-card class="project-card" hoverable @click="goToDetail">
     <div class="project-image">
       <img 
+        v-if="!imageError"
         :src="imageUrl" 
         :alt="project.name"
         class="project-img"
         @error="handleImageError"
       />
-      <div v-if="imageError" class="image-placeholder">
-        <span class="placeholder-icon">📷</span>
-      </div>
-      <div class="click-overlay">
-        <span class="overlay-icon">👆</span>
-        <span class="overlay-text">点击查看详情</span>
-      </div>
     </div>
     <div class="project-content">
       <div class="project-header">
         <h3 class="project-name">{{ project.name }}</h3>
-        <span class="detail-icon">→</span>
+        <span class="detail-icon">↗</span>
       </div>
       <div class="project-meta">
         <span class="meta-item">
@@ -117,50 +111,6 @@ const goToDetail = () => {
     object-fit: cover;
     display: block;
   }
-
-  .image-placeholder {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .placeholder-icon {
-      font-size: 48px;
-      opacity: 0.6;
-    }
-  }
-
-  .click-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 10px 16px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    opacity: 0;
-    transition: opacity 0.2s;
-    pointer-events: none;
-  }
-
-  &:hover .click-overlay {
-    opacity: 1;
-  }
-
-  .overlay-icon {
-    font-size: 14px;
-  }
-
-  .overlay-text {
-    font-size: 12px;
-    color: #fff;
-  }
 }
 
 .project-content {
@@ -192,13 +142,13 @@ const goToDetail = () => {
     flex-shrink: 0;
     margin-left: 8px;
     color: #999;
-    font-size: 16px;
-    transition: color 0.2s;
+    font-size: 18px;
+    transition: color 0.2s, transform 0.2s;
   }
 
   &:hover .detail-icon {
     color: #3b82f6;
-    transform: translateX(4px);
+    transform: translate(2px, -2px);
   }
 }
 
