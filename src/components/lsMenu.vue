@@ -34,8 +34,7 @@ const menuOptions = computed<CustomMenuOption[]>(() => {
       .filter(
           (routeItem: RouteRecordRaw) =>
               routeItem.name &&
-              routeItem.meta?.title &&
-              
+              routeItem.meta?.title
       )
       .map((routeItem: RouteRecordRaw) => ({
         key: String(routeItem.name),
