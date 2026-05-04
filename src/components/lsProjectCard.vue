@@ -1,5 +1,5 @@
 <template>
-  <n-card class="project-card" hoverable>
+  <n-card class="project-card" hoverable @click="goToDetail">
     <div class="project-image">
       <img 
         :src="imageUrl" 
@@ -10,13 +10,15 @@
       <div v-if="imageError" class="image-placeholder">
         <span class="placeholder-icon">📷</span>
       </div>
+      <div class="click-overlay">
+        <span class="overlay-icon">👆</span>
+        <span class="overlay-text">点击查看详情</span>
+      </div>
     </div>
     <div class="project-content">
       <div class="project-header">
         <h3 class="project-name">{{ project.name }}</h3>
-        <a :href="project.link" target="_blank" class="project-link" rel="noopener noreferrer">
-          <span class="link-icon">↗</span>
-        </a>
+        <span class="detail-icon">→</span>
       </div>
       <div class="project-meta">
         <span class="meta-item">
@@ -47,6 +49,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 
 interface Project {
   id: number
@@ -63,6 +66,8 @@ const props = defineProps<{
   project: Project
 }>()
 
+const router = useRouter()
+
 const imageError = ref(false)
 
 const imageUrl = computed(() => {
@@ -71,6 +76,10 @@ const imageUrl = computed(() => {
 
 const handleImageError = () => {
   imageError.value = true
+}
+
+const goToDetail = () => {
+  router.push(`/projects/${props.project.id}`)
 }
 </script>
 
@@ -123,6 +132,34 @@ const handleImageError = () => {
       opacity: 0.6;
     }
   }
+
+  .click-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 16px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+
+  &:hover .click-overlay {
+    opacity: 1;
+  }
+
+  .overlay-icon {
+    font-size: 14px;
+  }
+
+  .overlay-text {
+    font-size: 12px;
+    color: #fff;
+  }
 }
 
 .project-content {
@@ -150,19 +187,17 @@ const handleImageError = () => {
     white-space: nowrap;
   }
 
-  .project-link {
+  .detail-icon {
     flex-shrink: 0;
     margin-left: 8px;
-    color: #666;
+    color: #999;
+    font-size: 16px;
     transition: color 0.2s;
+  }
 
-    .link-icon {
-      font-size: 16px;
-    }
-
-    &:hover {
-      color: #3b82f6;
-    }
+  &:hover .detail-icon {
+    color: #3b82f6;
+    transform: translateX(4px);
   }
 }
 
