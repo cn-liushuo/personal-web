@@ -4,7 +4,7 @@
       <lsPageTitle>项目</lsPageTitle>
       <div class="projects-grid">
         <lsProjectCard 
-          v-for="project in projects" 
+          v-for="project in sortedProjects" 
           :key="project.id" 
           :project="project" 
         />
@@ -14,10 +14,40 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import lsCardBody from "@/components/lsCardBody.vue";
 import lsPageTitle from "@/components/lsPageTitle.vue";
 import lsProjectCard from "@/components/lsProjectCard.vue";
 import projects from "@/data/projectsData.json";
+
+interface Project {
+  id: number
+  name: string
+  role: string
+  time: string
+  description: string
+  achievements: string[]
+  link: string
+  image: string
+}
+
+// 解析时间字符串，获取开始日期
+const parseStartDate = (timeStr: string): Date => {
+  // 支持 "2024.02 ~ 2024.05" 或 "2023.08 至 2023.12" 格式
+  const startMatch = timeStr.match(/(\d{4})[.](\d{2})/)
+  if (startMatch && startMatch[1] && startMatch[2]) {
+    return new Date(parseInt(startMatch[1]), parseInt(startMatch[2]) - 1)
+  }
+  return new Date(0)
+}
+
+const sortedProjects = computed<Project[]>(() => {
+  return [...projects].sort((a, b) => {
+    const dateA = parseStartDate(a.time)
+    const dateB = parseStartDate(b.time)
+    return dateB.getTime() - dateA.getTime()
+  })
+})
 </script>
 
 <style scoped lang="scss">

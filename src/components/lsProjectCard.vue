@@ -89,6 +89,7 @@ const goToDetail = () => {
   flex-direction: column;
   height: 100%;
   transition: transform 0.2s ease;
+  cursor: pointer;
 
   &:hover {
     transform: translateY(-4px);
