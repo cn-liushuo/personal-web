@@ -2,41 +2,41 @@
   <n-card class="project-card" hoverable>
     <div class="project-image">
       <img 
-        :src="require(`@/assets/images/projects/${project.image}`)" 
+        :src="imageUrl" 
         :alt="project.name"
         class="project-img"
         @error="handleImageError"
       />
       <div v-if="imageError" class="image-placeholder">
-        <n-icon :component="FileImage" :size="48" class="placeholder-icon" />
+        <span class="placeholder-icon">📷</span>
       </div>
     </div>
     <div class="project-content">
       <div class="project-header">
         <h3 class="project-name">{{ project.name }}</h3>
-        <a :href="project.link" target="_blank" class="project-link">
-          <n-icon :component="ExternalLink" :size="16" />
+        <a :href="project.link" target="_blank" class="project-link" rel="noopener noreferrer">
+          <span class="link-icon">↗</span>
         </a>
       </div>
       <div class="project-meta">
         <span class="meta-item">
-          <n-icon :component="User" :size="14" />
+          <span class="meta-icon">👤</span>
           {{ project.role }}
         </span>
         <span class="meta-item">
-          <n-icon :component="Calendar" :size="14" />
+          <span class="meta-icon">📅</span>
           {{ project.time }}
         </span>
       </div>
       <p class="project-description">{{ project.description }}</p>
       <div class="project-achievements">
         <h4 class="achievements-title">
-          <n-icon :component="Award" :size="14" />
+          <span class="meta-icon">🏆</span>
           项目业绩
         </h4>
         <ul class="achievements-list">
           <li v-for="(achievement, index) in project.achievements" :key="index">
-            <n-icon :component="CheckCircle" :size="12" class="achievement-icon" />
+            <span class="achievement-icon">✓</span>
             {{ achievement }}
           </li>
         </ul>
@@ -46,15 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { 
-  ExternalLink, 
-  User, 
-  Calendar, 
-  Award, 
-  CheckCircle,
-  FileImage 
-} from '@vicons/material'
+import { ref, computed } from 'vue'
 
 interface Project {
   id: number
@@ -72,6 +64,10 @@ const props = defineProps<{
 }>()
 
 const imageError = ref(false)
+
+const imageUrl = computed(() => {
+  return `/images/projects/${props.project.image}`
+})
 
 const handleImageError = () => {
   imageError.value = true
@@ -121,10 +117,10 @@ const handleImageError = () => {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.1);
 
     .placeholder-icon {
-      color: rgba(255, 255, 255, 0.6);
+      font-size: 48px;
+      opacity: 0.6;
     }
   }
 }
@@ -160,6 +156,10 @@ const handleImageError = () => {
     color: #666;
     transition: color 0.2s;
 
+    .link-icon {
+      font-size: 16px;
+    }
+
     &:hover {
       color: #3b82f6;
     }
@@ -177,6 +177,10 @@ const handleImageError = () => {
     gap: 4px;
     font-size: 13px;
     color: #666;
+
+    .meta-icon {
+      font-size: 14px;
+    }
   }
 }
 
@@ -228,6 +232,7 @@ const handleImageError = () => {
         flex-shrink: 0;
         color: #22c55e;
         margin-top: 2px;
+        font-weight: bold;
       }
     }
   }
