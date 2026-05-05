@@ -1,18 +1,15 @@
 <template>
-  <n-card class="project-card" hoverable @click="goToDetail">
-    <div class="project-image">
-      <img 
-        v-if="!imageError"
-        :src="imageUrl" 
-        :alt="project.name"
-        class="project-img"
-        @error="handleImageError"
-      />
-    </div>
+  <n-card
+    class="project-card"
+    hoverable
+    @click="handleCardClick"
+  >
     <div class="project-content">
       <div class="project-header">
-        <h3 class="project-name">{{ project.name }}</h3>
-        <span class="detail-icon">↗</span>
+        <div class="title-wrapper">
+          <h3 class="project-name">{{ project.name }}</h3>
+          <span v-if="project.link && project.link !== '-'" class="link-icon">🔗</span>
+        </div>
       </div>
       <div class="project-meta">
         <span class="meta-item">
@@ -42,8 +39,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { useMessage } from 'naive-ui'
+
+const message = useMessage()
 
 interface Project {
   id: number
@@ -53,27 +51,18 @@ interface Project {
   description: string
   achievements: string[]
   link: string
-  image: string
 }
 
 const props = defineProps<{
   project: Project
 }>()
 
-const router = useRouter()
-
-const imageError = ref(false)
-
-const imageUrl = computed(() => {
-  return `/images/projects/${props.project.image}`
-})
-
-const handleImageError = () => {
-  imageError.value = true
-}
-
-const goToDetail = () => {
-  router.push(`/projects/${props.project.id}`)
+const handleCardClick = () => {
+  if (props.project.link && props.project.link !== '-') {
+    window.open(props.project.link, '_blank', 'noopener noreferrer')
+  } else {
+    message.info('该项目暂未提供项目链接')
+  }
 }
 </script>
 
@@ -87,6 +76,15 @@ const goToDetail = () => {
 
   &:hover {
     transform: translateY(-4px);
+
+    .project-name {
+      color: #3b82f6;
+    }
+
+    .link-icon {
+      color: #22c55e;
+      transform: scale(1.1);
+    }
   }
 
   :deep(.n-card__content) {
@@ -95,21 +93,6 @@ const goToDetail = () => {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-  }
-}
-
-.project-image {
-  position: relative;
-  width: 100%;
-  height: 180px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-
-  .project-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
   }
 }
 
@@ -127,6 +110,14 @@ const goToDetail = () => {
   align-items: center;
   margin-bottom: 12px;
 
+  .title-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    overflow: hidden;
+  }
+
   .project-name {
     font-size: 18px;
     font-weight: 600;
@@ -136,19 +127,14 @@ const goToDetail = () => {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    transition: color 0.2s;
   }
 
-  .detail-icon {
+  .link-icon {
     flex-shrink: 0;
-    margin-left: 8px;
+    font-size: 16px;
     color: #999;
-    font-size: 18px;
     transition: color 0.2s, transform 0.2s;
-  }
-
-  &:hover .detail-icon {
-    color: #3b82f6;
-    transform: translate(2px, -2px);
   }
 }
 
