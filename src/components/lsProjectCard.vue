@@ -57,9 +57,17 @@ const props = defineProps<{
   project: Project
 }>()
 
+const isMobile = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768
+}
+
 const handleCardClick = () => {
   if (props.project.link && props.project.link !== '-') {
-    window.open(props.project.link, '_blank', 'noopener noreferrer')
+    if (isMobile()) {
+      message.info('请在PC端访问项目链接')
+    } else {
+      window.open(props.project.link, '_blank', 'noopener noreferrer')
+    }
   } else {
     message.info('该项目暂未提供项目链接')
   }
