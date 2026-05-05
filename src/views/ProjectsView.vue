@@ -55,13 +55,29 @@ const sortedProjects = computed<Project[]>(() => {
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-  margin-top: 20px;
+  gap: 24px;
+  margin-top: 24px;
 }
 
 @media (max-width: 1024px) {
   .projects-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    gap: 16px;
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-grid {
+    gap: 12px;
+    margin-top: 12px;
   }
 }
 </style>
