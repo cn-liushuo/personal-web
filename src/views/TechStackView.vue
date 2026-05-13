@@ -12,6 +12,7 @@
             <lsSkillItem name="Qiankun(微前端框架)" :percentage="0" />
             <lsSkillItem name="PWA(渐进式Web应用)" :percentage="0" />
             <lsSkillItem name="GraphQL(数据查询)" :percentage="0" />
+            <lsSkillItem name="Electron(桌面应用程序)" :percentage="30" />
             <lsSkillItem name="Vite(前端构建工具)" :percentage="60" />
             <lsSkillItem name="Webpack(模块打包工具)" :percentage="50" />
             <lsSkillItem name="React(UI框架)" :percentage="0" />
