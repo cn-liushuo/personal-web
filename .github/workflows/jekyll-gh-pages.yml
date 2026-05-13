@@ -1,0 +1,63 @@
+name: Deploy Vue to GitHub Pages
+
+on:
+  # 当推送到 master 分支时触发
+  push:
+    branches: [master]
+  # 允许手动触发工作流
+  workflow_dispatch:
+
+# 设置权限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 允许一次只运行一个部署任务
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 检出代码
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. 设置 Node.js 环境
+      # 根据你使用的 Vite 版本，建议使用较新的 Node.js (18 或 20)
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm" # 自动缓存 npm 依赖以加速构建
+
+      # 3. 安装依赖
+      - name: Install dependencies
+        run: npm install
+
+      # 4. 构建项目
+      # 这一步会生成 dist 文件夹
+      - name: Build
+        run: npm run build
+
+      # 5. 上传构建产物 (用于部署)
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    # 等待 build 任务完成后执行
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      # 6. 部署到 GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -7,6 +7,7 @@ import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: process.env.NODE_ENV === "production" ? "/personal-web/" : "/", 
   plugins: [
     // 自动导入配置，包括 Naive UI 组件
     AutoImport({
