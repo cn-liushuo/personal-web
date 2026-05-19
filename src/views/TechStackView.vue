@@ -43,10 +43,10 @@
             <lsSkillItem name="Docker(容器化)" :percentage="0" />
             <lsSkillItem name="Spring Security(安全框架)" :percentage="0" />
             <lsSkillItem name="Spring Cloud(微服务框架)" :percentage="0" />
-            <lsSkillItem name="Spring Boot(Java框架)" :percentage="0" />
+            <lsSkillItem name="Spring Boot(Java框架)" :percentage="20" />
             <lsSkillItem name="Spring Framework(IoC/AOP)" :percentage="0" />
             <lsSkillItem name="MySQL(关系型数据库)" :percentage="40" />
-            <lsSkillItem name="Java(编程语言)" :percentage="0" />
+            <lsSkillItem name="Java(编程语言)" :percentage="20" />
           </n-space>
         </section>
 

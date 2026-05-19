@@ -72,6 +72,16 @@
                 :title="item.name"
                 class="info-card"
               >
+                <div v-if="item.image" class="card-item card-cert-image">
+                  <span class="card-label">证书：</span>
+                  <n-image
+                    :src="item.image"
+                    width="120"
+                    object-fit="contain"
+                    :render-toolbar="lsImagePreviewToolbar"
+                    class="cert-image"
+                  />
+                </div>
                 <p class="card-item"><span class="card-label">级别：</span>{{ item.level }}</p>
                 <p class="card-item"><span class="card-label">考试科目：</span>{{ item.subject }}</p>
                 <p class="card-item"><span class="card-label">等第 / 成绩：</span>{{ item.grade }}</p>
@@ -134,6 +144,7 @@ import lsPageTitle from "@/components/lsPageTitle.vue";
 import lsSectionTitle from "@/components/lsSectionTitle.vue";
 import lsTable from "@/components/lsTable.vue";
 import aboutData from "@/data/aboutData.json";
+import { lsImagePreviewToolbar } from "@/utils/lsImagePreviewToolbar";
 
 // 类型定义
 interface Certificate {
@@ -145,6 +156,8 @@ interface Certificate {
   grade: string;
   issuer: string;
   date: string;
+  /** 证书扫描件文件名（位于 src/data/images/） */
+  image?: string;
 }
 
 /** 解析「YYYY年M月…」式日期为时间戳；无效或「—」返回 0（倒序时排在末尾） */
@@ -183,8 +196,24 @@ const trainingColumns = [
   { key: "duration", title: "时间" }
 ];
 
+/** 证书图片（src/data/images） */
+const certificateImageModules = import.meta.glob<string>(
+  "@/data/images/*.{png,jpg,jpeg,webp}",
+  { eager: true, import: "default" }
+);
+
+function resolveCertificateImage(filename?: string): string | undefined {
+  if (!filename) return undefined;
+  const normalized = filename.replace(/\\/g, "/");
+  const entry = Object.entries(certificateImageModules).find(([path]) =>
+    path.replace(/\\/g, "/").endsWith(`/${normalized}`)
+  );
+  return entry?.[1];
+}
+
 // 资格证书表格列定义（长文四列单行省略，见 lsTable Column.ellipsis）
 const certificatesColumns = [
+  { key: "image", title: "证书", type: "image" as const, maxWidth: 72 },
   { key: "name", title: "证书名称", ellipsis: true, maxWidth: 220 },
   { key: "level", title: "级别" },
   { key: "subject", title: "考试科目", ellipsis: true, maxWidth: 300 },
@@ -229,7 +258,10 @@ const trainingData = computed(() => {
 });
 // 资格证书按「获得时间」date 降序（新 → 旧）；同日或无法解析时按证书名称稳定排序
 const certificatesData = computed(() => {
-  const list = [...(aboutData.certificates.data as Certificate[])];
+  const list = [...(aboutData.certificates.data as Certificate[])].map((item) => ({
+    ...item,
+    image: resolveCertificateImage(item.image)
+  }));
   list.sort((a, b) => {
     const tb = parseChineseDateForSort(b.date);
     const ta = parseChineseDateForSort(a.date);
@@ -309,6 +341,17 @@ const addressData = reactive(aboutData.address.data);
   color: rgba(0, 0, 0, 0.5);
   font-weight: 500;
   margin-right: 4px;
+}
+
+.card-cert-image {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.cert-image {
+  line-height: 0;
 }
 
 /* 移动端适配 */

@@ -8,7 +8,14 @@
     >
       <thead>
         <tr>
-          <th v-for="col in columns" :key="col.key">{{ col.title }}</th>
+          <th
+            v-for="col in columns"
+            :key="col.key"
+            :class="{ 'ls-th-image': col.type === 'image' }"
+            :style="cellTdStyle(col)"
+          >
+            {{ col.title }}
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -16,10 +23,19 @@
           <td
             v-for="col in columns"
             :key="col.key"
+            :class="{ 'ls-td-image-col': col.type === 'image' }"
             :style="cellTdStyle(col)"
           >
+            <n-image
+              v-if="col.type === 'image' && cellImageSrc(row, col.key)"
+              :src="cellImageSrc(row, col.key)"
+              width="56"
+              object-fit="contain"
+              :render-toolbar="lsImagePreviewToolbar"
+              class="ls-td-image"
+            />
             <n-ellipsis
-              v-if="col.ellipsis"
+              v-else-if="col.ellipsis"
               :tooltip="true"
               class="ls-td-ellipsis"
             >
@@ -35,10 +51,13 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { lsImagePreviewToolbar } from '@/utils/lsImagePreviewToolbar'
 
 export interface Column {
   key: string
   title: string
+  /** text（默认）为纯文本；image 使用 n-image 展示图片 URL */
+  type?: 'text' | 'image'
   /** 为 true 时单行不换行，超出用 n-ellipsis 省略并可在 tooltip 中查看全文 */
   ellipsis?: boolean
   /** 与 ellipsis 搭配：单元格最大宽度（数字为 px，或任意 CSS 长度） */
@@ -67,8 +86,20 @@ function cssMaxWidth(col: Column): string {
   return typeof col.maxWidth === 'number' ? `${col.maxWidth}px` : String(col.maxWidth)
 }
 
-/** 省略列需限制 td 宽度，否则表格会一直撑开无法触发省略 */
+/** 图片列默认宽度（缩略图 56px + 单元格内边距） */
+const DEFAULT_IMAGE_COL_WIDTH = 72
+
+function cssWidth(col: Column, fallback: string): string {
+  if (col.maxWidth != null) return cssMaxWidth(col)
+  return fallback
+}
+
+/** 限制列宽：省略列与图片列，避免表格被撑开 */
 function cellTdStyle(col: Column): Record<string, string> | undefined {
+  if (col.type === 'image') {
+    const w = cssWidth(col, `${DEFAULT_IMAGE_COL_WIDTH}px`)
+    return { maxWidth: w, width: w, minWidth: w }
+  }
   if (!col.ellipsis) return undefined
   const w = cssMaxWidth(col)
   return { maxWidth: w, width: w }
@@ -77,6 +108,12 @@ function cellTdStyle(col: Column): Record<string, string> | undefined {
 function cellText(row: Record<string, any>, key: string): string {
   const v = row[key]
   if (v == null) return ''
+  return String(v)
+}
+
+function cellImageSrc(row: Record<string, any>, key: string): string | undefined {
+  const v = row[key]
+  if (v == null || v === '') return undefined
   return String(v)
 }
 </script>
@@ -105,5 +142,27 @@ function cellText(row: Record<string, any>, key: string): string {
 .ls-td-ellipsis {
   display: block;
   max-width: 100%;
+}
+
+.ls-th-image {
+  vertical-align: middle;
+  text-align: left;
+}
+
+.ls-td-image-col {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.ls-td-image {
+  display: inline-block;
+  line-height: 0;
+  max-width: 56px;
+
+  :deep(img) {
+    display: block;
+    max-width: 56px;
+    height: auto;
+  }
 }
 </style>

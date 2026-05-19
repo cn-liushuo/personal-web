@@ -28,7 +28,8 @@
         "subject": "WPS Office高级应用与设计",
         "grade": "及格",
         "issuer": "教育部教育考试院",
-        "date": "2026年03月"
+        "date": "2026年03月",
+        "image": "NCRE-Level-2.png"
       },
       {
         "name": "全国计算机等级考试",
@@ -36,7 +37,8 @@
         "subject": "一级计算机基础及WPS Office应用",
         "grade": "良好",
         "issuer": "教育部教育考试院",
-        "date": "2025年09月"
+        "date": "2025年09月",
+        "image": "NCRE-Level-1.png"
       },
       {
         "name": "5G基站建设与维护职业技能等级证书",
@@ -60,7 +62,8 @@
         "subject": "表格高级、文字高级、演示高级；编号 m3230526565823",
         "grade": "—",
         "issuer": "金山办公",
-        "date": "2023年05月21日"
+        "date": "2023年05月21日",
+        "image": "KOS.jpg"
       },
       {
         "name": "机动车驾驶证",
