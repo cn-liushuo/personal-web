@@ -24,6 +24,14 @@
     "data": [
       {
         "name": "全国计算机等级考试",
+        "level": "二级",
+        "subject": "WPS Office高级应用与设计",
+        "grade": "及格",
+        "issuer": "教育部教育考试院",
+        "date": "2026年03月"
+      },
+      {
+        "name": "全国计算机等级考试",
         "level": "一级",
         "subject": "一级计算机基础及WPS Office应用",
         "grade": "良好",
