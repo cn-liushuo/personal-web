@@ -12,12 +12,12 @@
             <lsSkillItem name="Qiankun(微前端框架)" :percentage="0" />
             <lsSkillItem name="PWA(渐进式Web应用)" :percentage="0" />
             <lsSkillItem name="GraphQL(数据查询)" :percentage="0" />
-            <lsSkillItem name="Electron(桌面应用程序)" :percentage="30" />
+            <lsSkillItem name="Electron(桌面应用程序)" :percentage="40" />
             <lsSkillItem name="Vite(前端构建工具)" :percentage="60" />
             <lsSkillItem name="Webpack(模块打包工具)" :percentage="50" />
-            <lsSkillItem name="React(UI框架)" :percentage="0" />
-            <lsSkillItem name="React Router(路由管理)" :percentage="0" />
-            <lsSkillItem name="Redux(状态管理)" :percentage="0" />
+            <lsSkillItem name="React(UI框架)" :percentage="60" />
+            <lsSkillItem name="React Router(路由管理)" :percentage="60" />
+            <lsSkillItem name="Redux(状态管理)" :percentage="60" />
             <lsSkillItem name="TypeScript(类型脚本)" :percentage="90" />
             <lsSkillItem name="Vue(渐进式框架)" :percentage="90" />
             <lsSkillItem name="Vue Router(路由管理)" :percentage="85" />
@@ -43,10 +43,10 @@
             <lsSkillItem name="Docker(容器化)" :percentage="0" />
             <lsSkillItem name="Spring Security(安全框架)" :percentage="0" />
             <lsSkillItem name="Spring Cloud(微服务框架)" :percentage="0" />
-            <lsSkillItem name="Spring Boot(Java框架)" :percentage="20" />
+            <lsSkillItem name="Spring Boot(Java框架)" :percentage="40" />
             <lsSkillItem name="Spring Framework(IoC/AOP)" :percentage="0" />
             <lsSkillItem name="MySQL(关系型数据库)" :percentage="40" />
-            <lsSkillItem name="Java(编程语言)" :percentage="20" />
+            <lsSkillItem name="Java(编程语言)" :percentage="40" />
           </n-space>
         </section>
 
@@ -57,7 +57,7 @@
             <lsSkillItem name="Locust(性能测试)" :percentage="0" />
             <lsSkillItem name="JMeter(性能测试)" :percentage="0" />
             <lsSkillItem name="RestAssured(接口测试)" :percentage="0" />
-            <lsSkillItem name="Postman(接口测试)" :percentage="40" />
+            <lsSkillItem name="Postman(接口测试)" :percentage="60" />
             <lsSkillItem name="Mockito(单元测试Mock)" :percentage="0" />
             <lsSkillItem name="JUnit 5(单元测试)" :percentage="0" />
             <lsSkillItem name="TestNG(测试框架)" :percentage="0" />
@@ -80,7 +80,7 @@
             <lsSkillItem name="Terraform(基础设施即代码)" :percentage="0" />
             <lsSkillItem name="Ansible(自动化运维)" :percentage="0" />
             <lsSkillItem name="Docker(容器化)" :percentage="0" />
-            <lsSkillItem name="Jenkins(CI/CD)" :percentage="50" />
+            <lsSkillItem name="Jenkins(CI/CD)" :percentage="60" />
             <lsSkillItem name="GitLab CI(CI/CD)" :percentage="0" />
             <lsSkillItem name="Git(版本控制)" :percentage="90" />
           </n-space>
