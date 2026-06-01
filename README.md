@@ -117,7 +117,7 @@ Vite 插件会在开发/构建时生成 `auto-imports.d.ts`、`components.d.ts`�
 
 **注意：**
 
-1. 推送到 **`main` 分支** 时自动触发部署。
+1. 推送到 **`master` 分支** 时自动触发部署。
 2. 仓库 Settings → Pages 需启用 **GitHub Actions** 作为 Source。
 3. 站点使用 **Hash 路由**（`createWebHashHistory`），无需服务端重写规则。
 
@@ -136,6 +136,7 @@ fix(项目): 修复移动端卡片点击逻辑
 
 | 日期 | 说明 |
 |------|------|
+| 2026-06-01 | GitHub Actions：由 Jekyll 模板改为 Vue + Vite（`npm ci` / `npm run build`，发布 `dist`） |
 | 2026-06-01 | 测试 GitHub Page 发布 + 打包 |
 | 2026-05-28 | 测试 GitHub Page 发布 + 打包 |
 | 2026-05-28 | 新增 MIT 开源许可证（`LICENSE`） |
