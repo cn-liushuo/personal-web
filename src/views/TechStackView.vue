@@ -57,7 +57,7 @@
             <lsSkillItem name="Locust(性能测试)" :percentage="0" />
             <lsSkillItem name="JMeter(性能测试)" :percentage="0" />
             <lsSkillItem name="RestAssured(接口测试)" :percentage="0" />
-            <lsSkillItem name="Postman(接口测试)" :percentage="60" />
+            <lsSkillItem name="Apipost(接口测试)" :percentage="60" />
             <lsSkillItem name="Mockito(单元测试Mock)" :percentage="0" />
             <lsSkillItem name="JUnit 5(单元测试)" :percentage="0" />
             <lsSkillItem name="TestNG(测试框架)" :percentage="0" />
