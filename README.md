@@ -132,18 +132,6 @@ feat(技术栈): 调整技能熟练度
 fix(项目): 修复移动端卡片点击逻辑
 ```
 
-## 修订记录
-
-| 日期 | 说明 |
-|------|------|
-| 2026-06-01 | GitHub Actions：由 Jekyll 模板改为 Vue + Vite（`npm ci` / `npm run build`，发布 `dist`） |
-| 2026-06-01 | 测试 GitHub Page 发布 + 打包 |
-| 2026-05-28 | 测试 GitHub Page 发布 + 打包 |
-| 2026-05-28 | 新增 MIT 开源许可证（`LICENSE`） |
-| 2026-05-28 | GitHub Actions 部署触发分支由 `master` 改为 `main` |
-| 2026-05-28 | 重写 README：补充项目介绍、结构、开发与部署说明 |
-| 2026-05-28 | 技术栈页：更新 Electron、React 系、Java/Spring Boot、Postman、Jenkins 等技能熟练度；`package.json` 增加 Volta 固定 Node 20.20.2 |
-
 ## 许可证
 
 本项目采用 [MIT License](./LICENSE) 开源协议。
