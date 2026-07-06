@@ -132,6 +132,16 @@
             </n-card>
           </div>
         </section>
+
+        <!-- 联系我 -->
+        <section class="about-section">
+          <lsSectionTitle>联系我</lsSectionTitle>
+          <ul class="contact-list">
+            <li v-for="item in contactData" :key="item.email">
+              <a class="contact-link" :href="`mailto:${item.email}`">{{ item.email }}</a>
+            </li>
+          </ul>
+        </section>
       </n-space>
     </div>
   </lsCardBody>
@@ -272,6 +282,7 @@ const certificatesData = computed(() => {
 });
 const familyData = reactive(aboutData.familyBackground.data);
 const addressData = reactive(aboutData.address.data);
+const contactData = reactive(aboutData.contact.data);
 </script>
 
 <style scoped lang="scss">
@@ -294,6 +305,22 @@ const addressData = reactive(aboutData.address.data);
   margin: 0;
   line-height: 1.8;
   color: rgba(0, 0, 0, 0.55);
+}
+
+.contact-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 1.8;
+}
+
+.contact-link {
+  color: rgb(var(--ls-theme-rgb));
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .cards-mobile {
